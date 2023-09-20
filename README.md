@@ -39,18 +39,26 @@ nethermind --version
 ![nethermind-version](./images/nethermind-version.png)
 
 ## Step 2: Install Concensus client
-This required installing git, docker and docker compose which i already had installed on my machine so i went on to pull chainsafe Lodestar image
+This required installing git, docker and docker compose which I already had all but docker compose installed on my machine. I installed docker compose and went on to pull chainsafe Lodestar image
 
-docker-compose --version
+```bash
+docker-compose --version`
+```
 ![docker-compose](./images/docker-compose.png)
 
+
+```bash
 docker pull docker pull chainsafe/lodestar
+```
 ![lodestar](./images/lodestar-pull.png)
 
 
 ## Step 3: Created a JWT secret file
 
-`openssl rand -hex 32 | tr -d "\n" > "/tmp/jwtsecret"`
+
+```bash
+openssl rand -hex 32 | tr -d "\n" > "/tmp/jwtsecret"
+```
 ![lodestar](./images/lodestar.png)
 
 
@@ -83,5 +91,5 @@ This command is instructing Nethermind to start and use the configuration settin
 
 ![nethermind](./images/nethermind.png)
 ![nethermind](./images/nethermind-running.png)
-![nethermind](./images/nethermind-stopped.png)
+![nethermind](./images/-stopped-nethermind.png)
 
