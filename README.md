@@ -89,7 +89,7 @@ nethermind -c mainnet
 ```
 This command is instructing Nethermind to start and use the configuration settings for connecting to the Ethereum mainnet
 
-![nethermind](./images/nethermind.png)
 ![nethermind](./images/nethermind-running.png)
-![nethermind](./images/-stopped-nethermind.png)
+![nethermind](./images/nethermind.png)
+![nethermind](./images/stopped-nethermind.png)
 
