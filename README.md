@@ -36,22 +36,22 @@ sudo apt install nethermind
 nethermind --version
 ```
 
-![nethermind-version](./images/nethermind-version)
+![nethermind-version](./images/nethermind-version.png)
 
 ## Step 2: Install Concensus client
 This required installing git, docker and docker compose which i already had installed on my machine so i went on to pull chainsafe Lodestar image
 
 docker-compose --version
-![docker-compose](./images/docker-compose)
+![docker-compose](./images/docker-compose.png)
 
 docker pull docker pull chainsafe/lodestar
-![lodestar](./images/lodestar-pull)
+![lodestar](./images/lodestar-pull.png)
 
 
 ## Step 3: Created a JWT secret file
 
 `openssl rand -hex 32 | tr -d "\n" > "/tmp/jwtsecret"`
-![lodestar](./images/lodestar)
+![lodestar](./images/lodestar.png)
 
 
 ## Step 4: Clone the Lodestar Repository
@@ -81,7 +81,7 @@ nethermind -c mainnet
 ```
 This command is instructing Nethermind to start and use the configuration settings for connecting to the Ethereum mainnet
 
-![nethermind](./images/nethermind)
-![nethermind](./images/nethermind-running)
-![nethermind](./images/nethermind-stopped)
+![nethermind](./images/nethermind.png)
+![nethermind](./images/nethermind-running.png)
+![nethermind](./images/nethermind-stopped.png)
 
