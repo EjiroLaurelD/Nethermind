@@ -1,12 +1,12 @@
-Creating a README for deploying the Nethermind Lodestar client on Ubuntu 20.04 involves providing clear instructions and prerequisites for users. Below is a sample README document for this purpose:
+Creating a README for deploying the Nethermind Lodestar client on Ubuntu 20.04 
 
 ---
 
 # Deploying Nethermind Lodestar Client on Ubuntu 20.04
 
-This README provides step-by-step instructions for deploying the Nethermind Lodestar client on a Ubuntu 20.04 machine. Nethermind is an Ethereum client implementation, and Lodestar is an Ethereum 2.0 Beacon Chain client.
+This README provides step-by-step instructions on how I deployed the Nethermind Lodestar client on a Ubuntu 20.04 machine. Nethermind is an Ethereum client implementation, and Lodestar is an Ethereum 2.0 Beacon Chain client.
 
-**Note:** Ensure that you have administrative privileges or sudo access on your Ubuntu 20.04 server.
+**Note:** To follow along, ensure that you have administrative privileges or sudo access on your Ubuntu 20.04 server.
 
 ## Prerequisites
 
@@ -26,65 +26,62 @@ sudo apt update
 sudo apt upgrade
 ```
 
-## Step 2: Install Required Dependencies
+## Step 2: Install Nethermind
 
 You'll need Node.js and npm (Node Package Manager) to run Lodestar. Install them using the following commands:
 
 ```bash
-sudo apt install nodejs npm
+sudo add-apt-repository ppa:nethermindeth/nethermind
+sudo apt install nethermind
+nethermind --version
 ```
 
-## Step 3: Clone the Lodestar Repository
+![nethermind-version](./images/nethermind-version)
+
+## Step 2: Install Concensus client
+This required installing git, docker and docker compose which i already had installed on my machine so i went on to pull chainsafe Lodestar image
+
+docker-compose --version
+![docker-compose](./images/docker-compose)
+
+docker pull docker pull chainsafe/lodestar
+![lodestar](./images/lodestar-pull)
+
+
+## Step 3: Created a JWT secret file
+
+`openssl rand -hex 32 | tr -d "\n" > "/tmp/jwtsecret"`
+![lodestar](./images/lodestar)
+
+
+## Step 4: Clone the Lodestar Repository
 
 Clone the Lodestar repository from GitHub:
 
 ```bash
 git clone https://github.com/ChainSafe/lodestar.git
+cd lodestar-quickstart
 ```
 
-## Step 4: Install Dependencies and Build Lodestar
+## Step 4: Running Lodestar on Sepolia network
 
-Navigate to the Lodestar directory and install the required dependencies:
+In the Lodestar directory type in the following command:
 
 ```bash
-cd lodestar
-npm install
+./setup.sh --dataDir --elClient nethermind --network sepolia --justCL --skipImagePull
+./setup.sh --dataDir sepolia-data --elClient nethermind --network sepolia --justCL --skipImagePull --detached
 ```
 
-Now, build Lodestar:
+## Step 5: Running Nethermind
+
+Start Nethermind:
 
 ```bash
-npm run build
+nethermind -c mainnet
 ```
+This command is instructing Nethermind to start and use the configuration settings for connecting to the Ethereum mainnet
 
-## Step 5: Start Lodestar
+![nethermind](./images/nethermind)
+![nethermind](./images/nethermind-running)
+![nethermind](./images/nethermind-stopped)
 
-Start the Lodestar client:
-
-```bash
-npm run start
-```
-
-## Step 6: Verify Installation
-
-To verify that Lodestar is running successfully, open your web browser and go to `http://localhost:5052`. You should see the Lodestar web interface.
-
-## Configuration
-
-You can customize the configuration of Lodestar by editing the `config.yaml` file in the Lodestar directory. Refer to the official Lodestar documentation for detailed configuration options.
-
-## Troubleshooting
-
-- If you encounter any issues during the installation, refer to the [official Lodestar documentation](https://github.com/ChainSafe/lodestar) and [Nethermind documentation](https://github.com/NethermindEth/nethermind) for troubleshooting tips.
-
-- Ensure that your server's firewall allows traffic on the necessary ports if you intend to connect to other Ethereum nodes.
-
-## Conclusion
-
-You have successfully deployed the Nethermind Lodestar client on your Ubuntu 20.04 server. You can now use it to interact with Ethereum 2.0 Beacon Chain and participate in the network.
-
-For more information and advanced usage, please refer to the official [Lodestar GitHub repository](https://github.com/ChainSafe/lodestar) and the [Nethermind documentation](https://github.com/NethermindEth/nethermind).
-
----
-
-Feel free to customize this README to include any additional information, tips, or security considerations that may be relevant to your specific use case or environment.
