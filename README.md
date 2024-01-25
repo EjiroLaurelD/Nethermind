@@ -46,7 +46,7 @@ I pulled and ran the chainsafe Lodestar image follwoing the intrustions on the [
 ```bash
 docker-compose --version`
 ```
-![docker-compose](./images/docker-compose.png)
+![docker-compose](./images/docker-git.png)
 
 
 ```bash
@@ -86,6 +86,6 @@ nethermind \
 This command is instructing Nethermind to start and use the configuration settings for connecting to the Ethereum mainnet
 
 ![nethermind](./images/init-nm.png)
-![nethermind](./images/nethermind.png)
+![nethermind](./images/nm-running.png)
 ![nethermind](./images/stop-nm.png)
 
