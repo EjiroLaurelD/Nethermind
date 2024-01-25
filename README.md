@@ -3,7 +3,7 @@ Creating a README for deploying the Nethermind Lodestar client on Ubuntu 22.04
 
 # Deploying Nethermind Lodestar Client on Ubuntu 22.04
 
-This README provides step-by-step instructions on how I deployed the Nethermind Lodestar client on a Ubuntu 20.04 machine following the documention on 
+This README provides step-by-step instructions on how I deployed the Nethermind Lodestar client on a Ubuntu 22.04 machine following the documention on 
 [Nethermind's site](https://docs.nethermind.io/nethermind/first-steps-with-nethermind/running-nethermind-post-merge). 
 Nethermind is an Ethereum client implementation, and Lodestar is an Ethereum 2.0 Beacon Chain client.
 
