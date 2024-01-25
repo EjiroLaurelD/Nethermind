@@ -64,7 +64,7 @@ openssl rand -hex 32 | tr -d "\n" > "/tmp/jwtsecret"
 ```
 ![lodestar](./images/jwt-secret.png)
 
-## Step 5: Running Nethermind
+## Step 5: Running Nethermind (Execution client)
 
 Start Nethermind:
 
