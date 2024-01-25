@@ -1,19 +1,19 @@
-Creating a README for deploying the Nethermind Lodestar client on Ubuntu 20.04 
+Creating a README for deploying the Nethermind Lodestar client on Ubuntu 22.04 
 ---
 
-# Deploying Nethermind Lodestar Client on Ubuntu 20.04
+# Deploying Nethermind Lodestar Client on Ubuntu 22.04
 
 This README provides step-by-step instructions on how I deployed the Nethermind Lodestar client on a Ubuntu 20.04 machine following the documention on 
 [Nethermind's site](https://docs.nethermind.io/nethermind/first-steps-with-nethermind/running-nethermind-post-merge). 
 Nethermind is an Ethereum client implementation, and Lodestar is an Ethereum 2.0 Beacon Chain client.
 
-**Note:** To follow along, ensure that you have administrative privileges or sudo access on your Ubuntu 20.04 server.
+**Note:** To follow along, ensure that you have administrative privileges or sudo access on your Ubuntu 22.04 server.
 
 ## Prerequisites
 
 Before you begin, make sure you have the following prerequisites:
 
-- Ubuntu 20.04 server with SSH access
+- Ubuntu 22.04 server 
 - Internet connection
 - Basic knowledge of Linux command line
 - Administrative access or sudo privileges
@@ -29,7 +29,7 @@ sudo apt upgrade
 
 ## Step 2: Install Nethermind
 
-You'll need Node.js and npm (Node Package Manager) to run Lodestar. Install them using the following commands:
+Install using the following commands:
 
 ```bash
 sudo add-apt-repository ppa:nethermindeth/nethermind
@@ -37,10 +37,11 @@ sudo apt install nethermind
 nethermind --version
 ```
 
-![nethermind-version](./images/nethermind-version.png)
+![nethermind-version](./images/nm-version.png)
 
-## Step 2: Install Concensus client
-This required installing git, docker and docker compose which I already had all but docker compose installed on my machine. I installed docker compose and went on to pull chainsafe Lodestar image
+## Step 2: Install and run Concensus client (Lodestar)
+This required installing git, docker and docker compose.
+I pulled and ran the chainsafe Lodestar image follwoing the intrustions on the [documentation](https://chainsafe.github.io/lodestar/getting-started/installation/#docker-installation)
 
 ```bash
 docker-compose --version`
@@ -49,18 +50,19 @@ docker-compose --version`
 
 
 ```bash
-docker pull docker pull chainsafe/lodestar
+docker pull chainsafe/lodestar
+docker run chainsafe/lodestar
 ```
 ![lodestar](./images/lodestar-pull.png)
 
 
-## Step 3: Created a JWT secret file
-
+## Step 3: Configuring JSON-RPC interface (Create a JWT secret file)
+Execution and consensus clients communicate via an authenticated endpoint specified in Engine JSON-RPC API. In order to connect to a consensus client, the execution client must generate a JWT secret at a known path. i chose /tmp directory to create mine
 
 ```bash
 openssl rand -hex 32 | tr -d "\n" > "/tmp/jwtsecret"
 ```
-![lodestar](./images/lodestar.png)
+![lodestar](./images/jwt-secret.png)
 
 
 ## Step 4: Clone the Lodestar Repository
@@ -72,25 +74,18 @@ git clone https://github.com/ChainSafe/lodestar.git
 cd lodestar-quickstart
 ```
 
-## Step 4: Running Lodestar on Sepolia network
-
-In the Lodestar directory type in the following command:
-
-```bash
-./setup.sh --dataDir --elClient nethermind --network sepolia --justCL --skipImagePull
-./setup.sh --dataDir sepolia-data --elClient nethermind --network sepolia --justCL --skipImagePull --detached
-```
-
 ## Step 5: Running Nethermind
 
 Start Nethermind:
 
 ```bash
-nethermind -c mainnet
+nethermind \
+  -c mainnet \
+  --JsonRpc.JwtSecretFile /tmp/jwtsecret
 ```
 This command is instructing Nethermind to start and use the configuration settings for connecting to the Ethereum mainnet
 
-![nethermind](./images/nethermind-running.png)
+![nethermind](./images/init-nm.png)
 ![nethermind](./images/nethermind.png)
-![nethermind](./images/stopped-nethermind.png)
+![nethermind](./images/stop-nm.png)
 
