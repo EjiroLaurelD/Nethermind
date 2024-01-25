@@ -1,6 +1,3 @@
-Creating a README for deploying the Nethermind Lodestar client on Ubuntu 22.04 
----
-
 # Deploying Nethermind Lodestar Client on Ubuntu 22.04
 
 This README provides step-by-step instructions on how I deployed the Nethermind Lodestar client on a Ubuntu 22.04 machine following the documention on 
