@@ -39,7 +39,7 @@ nethermind --version
 
 ![nethermind-version](./images/nm-version.png)
 
-## Step 2: Install and run Concensus client (Lodestar)
+## Step 3: Install and run Concensus client (Lodestar)
 This required installing git, docker and docker compose.
 I pulled and ran the chainsafe Lodestar image follwoing the intrustions on the [documentation](https://chainsafe.github.io/lodestar/getting-started/installation/#docker-installation)
 
@@ -56,23 +56,13 @@ docker run chainsafe/lodestar
 ![lodestar](./images/lodestar-pull.png)
 
 
-## Step 3: Configuring JSON-RPC interface (Create a JWT secret file)
+## Step 4: Configuring JSON-RPC interface (Create a JWT secret file)
 Execution and consensus clients communicate via an authenticated endpoint specified in Engine JSON-RPC API. In order to connect to a consensus client, the execution client must generate a JWT secret at a known path. i chose /tmp directory to create mine
 
 ```bash
 openssl rand -hex 32 | tr -d "\n" > "/tmp/jwtsecret"
 ```
 ![lodestar](./images/jwt-secret.png)
-
-
-## Step 4: Clone the Lodestar Repository
-
-Clone the Lodestar repository from GitHub:
-
-```bash
-git clone https://github.com/ChainSafe/lodestar.git
-cd lodestar-quickstart
-```
 
 ## Step 5: Running Nethermind
 
@@ -85,7 +75,11 @@ nethermind \
 ```
 This command is instructing Nethermind to start and use the configuration settings for connecting to the Ethereum mainnet
 
+Initialized Nethermind on Mainnet Ethereum Network
 ![nethermind](./images/init-nm.png)
-![nethermind](./images/nm-running.png)
+
+![nethermind](./images/nm-runnin.png)
+
+stopped session
 ![nethermind](./images/stop-nm.png)
 
